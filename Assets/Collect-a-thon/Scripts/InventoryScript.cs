@@ -11,8 +11,7 @@ public class InventoryScript : MonoBehaviour
 
     bool inventoryShowing = false;
 
-    // LESSON 3-5: Add variable below.
-
+    public List<InvItem> inventory;
     void Start()
     {
         inventoryShowing = false;
@@ -22,7 +21,7 @@ public class InventoryScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.I))
+        if(Input.GetKeyDown(KeyCode.E))
         {
             if(inventoryShowing)
             {
@@ -48,12 +47,17 @@ public class InventoryScript : MonoBehaviour
     public void UpdateInventory()
     {
         DeleteOldItems();
-       
-        // LESSON 3-6: Add code below.
+
     }
 
     private void OnTriggerEnter(Collider other) 
     {
-        // LESSON 3-5: Add code below.
+
+        if (other.GetComponent<InvItem>() != null)
+        {
+            inventory.Add(other.GetComponent<InvItem>());
+            other.gameObject.SetActive(false);
+        }
+
     }
 }

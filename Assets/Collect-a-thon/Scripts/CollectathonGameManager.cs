@@ -7,12 +7,15 @@ public class CollectathonGameManager : MonoBehaviour
     public List<Vector3> predefinedLocations;
     public float randomLocationRange = 30;
 
-    // LESSON 3-5: Add variable below.
+    public InvItem[] levelItems;
 
     // Start is called before the first frame update
     void Start()
     {
-        // LESSON 3-6: Add code below.
+        for (int i = 0; i < levelItems.Length; i++)
+        {
+            PlaceLocation(i, levelItems[i].gameObject);
+        }
     }
 
 

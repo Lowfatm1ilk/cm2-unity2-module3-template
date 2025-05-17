@@ -28,5 +28,7 @@ public class ZombieScript : MonoBehaviour
     public void KillZombie()
     {
         // LESSON 3-3: Add code below.
+        parentSpawner.ZombieHasDied();
+        Destroy(this.gameObject);
     }
 }

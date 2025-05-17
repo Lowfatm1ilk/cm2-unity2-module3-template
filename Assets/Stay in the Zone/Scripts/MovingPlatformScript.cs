@@ -63,16 +63,27 @@ public class MovingPlatformScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision other) 
     {
-        // LESSON 3-2: Add code below.
+        if (other.collider.CompareTag("Player"))
+        {
+            playerOnPlatform = true;
+            transform.SetParent(this.transform);
+        }
     }
 
     private void OnCollisionStay(Collision other) 
     {
-        // LESSON 3-2: Add code below.
+        if(playerOnPlatform == true)
+        {
+            MovePlatform(superSpeed);
+        }
     }
 
     private void OnCollisionExit(Collision other) 
     {
-        // LESSON 3-2: Add code below.
+        if (other.collider.CompareTag("Player"))
+        {
+            playerOnPlatform = false;
+            transform.SetParent(null);
+        }
     }
 }

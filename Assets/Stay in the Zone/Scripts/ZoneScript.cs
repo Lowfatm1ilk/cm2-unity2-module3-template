@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class ZoneScript : MonoBehaviour
 { 
-    public float stayTimer = 5;
+    public float stayTimer = 5f;
     public float startingZoneSize = 50;
     public float zoneRadiusDivider = 1.5f;
     public Vector3 zoneLocationRange;
@@ -57,16 +57,30 @@ public class ZoneScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-        // LESSON 3-2: Add code below.
+        if (other.CompareTag("Player"))
+        {
+            playerInside = true;
+            SetZoneHelper(true);
+            timer = stayTimer;
+        }
     }
 
     private void OnTriggerStay(Collider other) 
     {
-        // LESSON 3-2: Add code below.
+        if (playerInside == true)
+        {
+            timer =- Time.deltaTime; 
+            if (timer == 0)
+            {
+                ZoneSuccess();
+            }
+        }
     }
 
     private void OnTriggerExit(Collider other) 
     {
-        // LESSON 3-2: Add code below.
+        playerInside = false;
+        SetZoneHelper(false);
+        timer = stayTimer;
     }
 }

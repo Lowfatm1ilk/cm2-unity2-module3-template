@@ -11,10 +11,9 @@ public class FireProjectile : MonoBehaviour
 
     public GameObject firepoint;
 
-    public float maxAmmo = 20;
+    public float maxAmmo = 200;
     public TextMeshProUGUI ammoText;
     public float reloadTime = 3f;
-
     private float ammoCount;
 
     void Start()
@@ -27,9 +26,16 @@ public class FireProjectile : MonoBehaviour
     {
         if(Input.GetButtonDown("Fire1") && ammoCount > 0)
         {
-            // LESSON 3-3: Add code below.
-
+            GameObject bullet = Instantiate(bulletPrefab);
+            BulletScript bulletScript = bullet.GetComponent<BulletScript>();
+            FireBullet(bulletScript);
             ammoText.text = $"Ammo: {ammoCount}";
+            ammoCount -= 1;
+
+        }
+        if(ammoCount == 0)
+        {
+            StartCoroutine(Reloading());
         }
 
         // LESSON 3-4: Add code below.
@@ -43,10 +49,11 @@ public class FireProjectile : MonoBehaviour
 
     public IEnumerator Reloading()
     {
-        // LESSON 3-4: Add code below.
+        ammoText.text = "Be Patient I Need Some Rest";
 
-        yield return new WaitForSeconds(0);
-        
-        // LESSON 3-4: Add code below.
+        yield return new WaitForSeconds(reloadTime);
+
+        ammoCount = maxAmmo;
+        ammoText.text = $"Ammo:{ammoCount}";
     }
 }

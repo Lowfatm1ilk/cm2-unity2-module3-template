@@ -40,8 +40,24 @@ public class GuessTheNumberScript : MonoBehaviour
     {
         numberOfGuesses++;
         guessText.text = "You guessed " + guess + "\n";
-        
+
         // LESSON 3-1: Add code below.
+        if (int.Parse(guess) == currentNumber)
+        {
+            score++;
+            guessText.text = "good job you didn't fail";
+            currentNumber = GenerateRandomNumber();
+            GenerateHints(currentNumber);
+        }
+        else if(int.Parse(guess) > currentNumber)
+        {
+            guessText.text = "your guess is MASSIVE";
+        }
+        else
+        {
+            guessText.text = "your guess is tiny";
+        }
+
     }
 
     public void GenerateHints(int chosenNumber)
@@ -51,5 +67,42 @@ public class GuessTheNumberScript : MonoBehaviour
         // LESSON 3-1: Add code below.
 
         hintsText.text = hints;
+        if (currentNumber % 2 == 0)
+        {
+            guessText.text = guessText.text+ "this number is even steven \n";
+        }
+        else
+        {
+            guessText.text = guessText.text + "this number is oDd ToDd \n";
+        }
+
+        if (currentNumber < 10)
+        {
+            guessText.text = guessText.text + "this number is smaller than the number of fillangies you have \n";
+        }
+        else
+        {
+            guessText.text = guessText.text + "this number is bigger than the number of toes you have \n";
+        }
+
+        if (currentNumber < 50)
+        {
+            guessText.text = guessText.text + "this number is bigger that half of 100 \n";
+        }
+        else
+        {
+            guessText.text = guessText.text + "this number is smaller that 5^2 * 2 \n";
+        }
+
+        if (currentNumber % 60 == 0)
+        {
+            guessText.text = guessText.text + "this number is dividable by 6*10 \n";
+        }
+        else
+        {
+            guessText.text = guessText.text + "this number is not 60";
+        }
+
+
     }
 }
