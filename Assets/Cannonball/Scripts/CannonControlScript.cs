@@ -13,11 +13,11 @@ public class CannonControlScript : MonoBehaviour
     public float minAngle = 10;
     public float maxAngle = 80;
 
-    public float minPower = 100;
-    public float maxPower = 5000;
+    public float minPower = 10000;
+    public float maxPower = 50000;
 
     public float currentAngle = 75;
-    public float currentPower = 1000;
+    public float currentPower = 30000;
 
 
     private float powerChangerValue = 0.25f;
@@ -62,7 +62,7 @@ public class CannonControlScript : MonoBehaviour
             GetComponent<CannonPathLine>()?.ToggleLine();
         }
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Mouse0))
         {
             FireCannonball();
         }
