@@ -62,7 +62,7 @@ public class CannonControlScript : MonoBehaviour
             GetComponent<CannonPathLine>()?.ToggleLine();
         }
 
-        if(Input.GetKeyDown(KeyCode.Mouse0))
+        if(Input.GetKeyDown(KeyCode.Mouse0)&& !hasFired)
         {
             FireCannonball();
         }
@@ -76,6 +76,7 @@ public class CannonControlScript : MonoBehaviour
         cannonball.transform.position = firepoint.position;
         cannonball.transform.rotation = firepoint.rotation;
         cannonball.GetComponent<CannonballScript>()?.Launch(this, currentPower, currentAngle);
+        StartCoroutine(ReturnCamera());
     }
 
     public IEnumerator ReturnCamera()

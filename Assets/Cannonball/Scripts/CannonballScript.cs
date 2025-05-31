@@ -6,9 +6,9 @@ public class CannonballScript : MonoBehaviour
 {
     private Rigidbody rb;
     private CannonControlScript cannon;
-    public float airSpeed = 10;
-    public float explosionPower = 10;
-    public float explosionRadius = 10;
+    public float airSpeed = 100;
+    public float explosionPower = 100;
+    public float explosionRadius = 100;
     [SerializeField]
     private ParticleSystem explosion;
     
@@ -23,7 +23,6 @@ public class CannonballScript : MonoBehaviour
         rb.AddRelativeForce(transform.up * power, ForceMode.Impulse);
     }
 
-    // Update is called once per frame
     void Update()
     {
         float x = Input.GetAxis("Horizantal") * airSpeed;

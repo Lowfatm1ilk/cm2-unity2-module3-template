@@ -10,7 +10,7 @@ public class DestructableBuilding : MonoBehaviour
     private TextMeshProUGUI scoreText;
     int score;
 
-    private void OnAwake()
+    private void Start()
     {
         scoreTextObject = FindObjectOfType<ScoreText>();
         if(scoreTextObject != null)
